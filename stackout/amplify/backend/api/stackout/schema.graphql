@@ -1,20 +1,41 @@
-type Blog @model {
+type User @model {
   id: ID!
   name: String!
-  posts: [Post] @connection(keyName: "byBlog", fields: ["id"])
+  workdays: [WorkDay] @connection(keyName: "byUser", fields: ["id"])
 }
 
-type Post @model @key(name: "byBlog", fields: ["blogID"]) {
+type WorkDay @model @key(name: "byUser", fields: ["userID"]) {
   id: ID!
   title: String!
-  blogID: ID!
-  blog: Blog @connection(fields: ["blogID"])
-  comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
+  userID: ID!
+  user: User @connection(fields: ["userID"])
+  workouts: [Workout] @connection(keyName: "byWorkday", fields: ["id"])
 }
 
-type Comment @model @key(name: "byPost", fields: ["postID", "content"]) {
+type Workout @model @key(name: "byWorkday", fields: ["workDayID", "content"]) {
   id: ID!
-  postID: ID!
-  post: Post @connection(fields: ["postID"])
+  workDayID: ID!
+  WorkDay: WorkDay @connection(fields: ["workDayID"])
   content: String!
 }
+
+# type Blog @model {
+#   id: ID!
+#   name: String!
+#   posts: [Post] @connection(keyName: "byBlog", fields: ["id"])
+# }
+
+# type Post @model @key(name: "byBlog", fields: ["blogID"]) {
+#   id: ID!
+#   title: String!
+#   blogID: ID!
+#   blog: Blog @connection(fields: ["blogID"])
+#   comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
+# }
+
+# type Comment @model @key(name: "byPost", fields: ["postID", "content"]) {
+#   id: ID!
+#   postID: ID!
+#   post: Post @connection(fields: ["postID"])
+#   content: String!
+# }

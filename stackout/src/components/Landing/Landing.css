@@ -1,0 +1,37 @@
+.landing-s0 {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.landing-s1 {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  background-color: rgb(18, 19, 18);
+  width: 100vw;
+}
+
+.landing-s2 {
+  color: aliceblue;
+}
+
+.landing-s3 {
+  margin: 2rem;
+  height: 3rem;
+  width: 15rem;
+  color: blue;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.landing-s4 {
+  margin: 1rem;
+}
+
+.landing-s22 {
+  margin: 0;
+}

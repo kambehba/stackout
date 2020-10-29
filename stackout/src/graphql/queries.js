@@ -1,16 +1,16 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getBlog = /* GraphQL */ `
-  query GetBlog($id: ID!) {
-    getBlog(id: $id) {
+export const getUser = /* GraphQL */ `
+  query GetUser($id: ID!) {
+    getUser(id: $id) {
       id
       name
-      posts {
+      workdays {
         items {
           id
           title
-          blogID
+          userID
           createdAt
           updatedAt
         }
@@ -21,17 +21,17 @@ export const getBlog = /* GraphQL */ `
     }
   }
 `;
-export const listBlogs = /* GraphQL */ `
-  query ListBlogs(
-    $filter: ModelBlogFilterInput
+export const listUsers = /* GraphQL */ `
+  query ListUsers(
+    $filter: ModelUserFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listBlogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
-        posts {
+        workdays {
           nextToken
         }
         createdAt
@@ -41,25 +41,25 @@ export const listBlogs = /* GraphQL */ `
     }
   }
 `;
-export const getPost = /* GraphQL */ `
-  query GetPost($id: ID!) {
-    getPost(id: $id) {
+export const getWorkDay = /* GraphQL */ `
+  query GetWorkDay($id: ID!) {
+    getWorkDay(id: $id) {
       id
       title
-      blogID
-      blog {
+      userID
+      user {
         id
         name
-        posts {
+        workdays {
           nextToken
         }
         createdAt
         updatedAt
       }
-      comments {
+      workouts {
         items {
           id
-          postID
+          workDayID
           content
           createdAt
           updatedAt
@@ -71,24 +71,24 @@ export const getPost = /* GraphQL */ `
     }
   }
 `;
-export const listPosts = /* GraphQL */ `
-  query ListPosts(
-    $filter: ModelPostFilterInput
+export const listWorkDays = /* GraphQL */ `
+  query ListWorkDays(
+    $filter: ModelWorkDayFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listWorkDays(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         title
-        blogID
-        blog {
+        userID
+        user {
           id
           name
           createdAt
           updatedAt
         }
-        comments {
+        workouts {
           nextToken
         }
         createdAt
@@ -98,22 +98,22 @@ export const listPosts = /* GraphQL */ `
     }
   }
 `;
-export const getComment = /* GraphQL */ `
-  query GetComment($id: ID!) {
-    getComment(id: $id) {
+export const getWorkout = /* GraphQL */ `
+  query GetWorkout($id: ID!) {
+    getWorkout(id: $id) {
       id
-      postID
-      post {
+      workDayID
+      WorkDay {
         id
         title
-        blogID
-        blog {
+        userID
+        user {
           id
           name
           createdAt
           updatedAt
         }
-        comments {
+        workouts {
           nextToken
         }
         createdAt
@@ -125,20 +125,20 @@ export const getComment = /* GraphQL */ `
     }
   }
 `;
-export const listComments = /* GraphQL */ `
-  query ListComments(
-    $filter: ModelCommentFilterInput
+export const listWorkouts = /* GraphQL */ `
+  query ListWorkouts(
+    $filter: ModelWorkoutFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listWorkouts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        postID
-        post {
+        workDayID
+        WorkDay {
           id
           title
-          blogID
+          userID
           createdAt
           updatedAt
         }

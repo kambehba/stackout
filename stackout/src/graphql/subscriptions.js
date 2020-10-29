@@ -1,16 +1,16 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateBlog = /* GraphQL */ `
-  subscription OnCreateBlog {
-    onCreateBlog {
+export const onCreateUser = /* GraphQL */ `
+  subscription OnCreateUser {
+    onCreateUser {
       id
       name
-      posts {
+      workdays {
         items {
           id
           title
-          blogID
+          userID
           createdAt
           updatedAt
         }
@@ -21,16 +21,16 @@ export const onCreateBlog = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateBlog = /* GraphQL */ `
-  subscription OnUpdateBlog {
-    onUpdateBlog {
+export const onUpdateUser = /* GraphQL */ `
+  subscription OnUpdateUser {
+    onUpdateUser {
       id
       name
-      posts {
+      workdays {
         items {
           id
           title
-          blogID
+          userID
           createdAt
           updatedAt
         }
@@ -41,16 +41,16 @@ export const onUpdateBlog = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteBlog = /* GraphQL */ `
-  subscription OnDeleteBlog {
-    onDeleteBlog {
+export const onDeleteUser = /* GraphQL */ `
+  subscription OnDeleteUser {
+    onDeleteUser {
       id
       name
-      posts {
+      workdays {
         items {
           id
           title
-          blogID
+          userID
           createdAt
           updatedAt
         }
@@ -61,25 +61,25 @@ export const onDeleteBlog = /* GraphQL */ `
     }
   }
 `;
-export const onCreatePost = /* GraphQL */ `
-  subscription OnCreatePost {
-    onCreatePost {
+export const onCreateWorkDay = /* GraphQL */ `
+  subscription OnCreateWorkDay {
+    onCreateWorkDay {
       id
       title
-      blogID
-      blog {
+      userID
+      user {
         id
         name
-        posts {
+        workdays {
           nextToken
         }
         createdAt
         updatedAt
       }
-      comments {
+      workouts {
         items {
           id
-          postID
+          workDayID
           content
           createdAt
           updatedAt
@@ -91,25 +91,25 @@ export const onCreatePost = /* GraphQL */ `
     }
   }
 `;
-export const onUpdatePost = /* GraphQL */ `
-  subscription OnUpdatePost {
-    onUpdatePost {
+export const onUpdateWorkDay = /* GraphQL */ `
+  subscription OnUpdateWorkDay {
+    onUpdateWorkDay {
       id
       title
-      blogID
-      blog {
+      userID
+      user {
         id
         name
-        posts {
+        workdays {
           nextToken
         }
         createdAt
         updatedAt
       }
-      comments {
+      workouts {
         items {
           id
-          postID
+          workDayID
           content
           createdAt
           updatedAt
@@ -121,25 +121,25 @@ export const onUpdatePost = /* GraphQL */ `
     }
   }
 `;
-export const onDeletePost = /* GraphQL */ `
-  subscription OnDeletePost {
-    onDeletePost {
+export const onDeleteWorkDay = /* GraphQL */ `
+  subscription OnDeleteWorkDay {
+    onDeleteWorkDay {
       id
       title
-      blogID
-      blog {
+      userID
+      user {
         id
         name
-        posts {
+        workdays {
           nextToken
         }
         createdAt
         updatedAt
       }
-      comments {
+      workouts {
         items {
           id
-          postID
+          workDayID
           content
           createdAt
           updatedAt
@@ -151,22 +151,22 @@ export const onDeletePost = /* GraphQL */ `
     }
   }
 `;
-export const onCreateComment = /* GraphQL */ `
-  subscription OnCreateComment {
-    onCreateComment {
+export const onCreateWorkout = /* GraphQL */ `
+  subscription OnCreateWorkout {
+    onCreateWorkout {
       id
-      postID
-      post {
+      workDayID
+      WorkDay {
         id
         title
-        blogID
-        blog {
+        userID
+        user {
           id
           name
           createdAt
           updatedAt
         }
-        comments {
+        workouts {
           nextToken
         }
         createdAt
@@ -178,22 +178,22 @@ export const onCreateComment = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateComment = /* GraphQL */ `
-  subscription OnUpdateComment {
-    onUpdateComment {
+export const onUpdateWorkout = /* GraphQL */ `
+  subscription OnUpdateWorkout {
+    onUpdateWorkout {
       id
-      postID
-      post {
+      workDayID
+      WorkDay {
         id
         title
-        blogID
-        blog {
+        userID
+        user {
           id
           name
           createdAt
           updatedAt
         }
-        comments {
+        workouts {
           nextToken
         }
         createdAt
@@ -205,22 +205,22 @@ export const onUpdateComment = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteComment = /* GraphQL */ `
-  subscription OnDeleteComment {
-    onDeleteComment {
+export const onDeleteWorkout = /* GraphQL */ `
+  subscription OnDeleteWorkout {
+    onDeleteWorkout {
       id
-      postID
-      post {
+      workDayID
+      WorkDay {
         id
         title
-        blogID
-        blog {
+        userID
+        user {
           id
           name
           createdAt
           updatedAt
         }
-        comments {
+        workouts {
           nextToken
         }
         createdAt

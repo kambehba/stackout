@@ -1,19 +1,19 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createBlog = /* GraphQL */ `
-  mutation CreateBlog(
-    $input: CreateBlogInput!
-    $condition: ModelBlogConditionInput
+export const createUser = /* GraphQL */ `
+  mutation CreateUser(
+    $input: CreateUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    createBlog(input: $input, condition: $condition) {
+    createUser(input: $input, condition: $condition) {
       id
       name
-      posts {
+      workdays {
         items {
           id
           title
-          blogID
+          userID
           createdAt
           updatedAt
         }
@@ -24,19 +24,19 @@ export const createBlog = /* GraphQL */ `
     }
   }
 `;
-export const updateBlog = /* GraphQL */ `
-  mutation UpdateBlog(
-    $input: UpdateBlogInput!
-    $condition: ModelBlogConditionInput
+export const updateUser = /* GraphQL */ `
+  mutation UpdateUser(
+    $input: UpdateUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    updateBlog(input: $input, condition: $condition) {
+    updateUser(input: $input, condition: $condition) {
       id
       name
-      posts {
+      workdays {
         items {
           id
           title
-          blogID
+          userID
           createdAt
           updatedAt
         }
@@ -47,19 +47,19 @@ export const updateBlog = /* GraphQL */ `
     }
   }
 `;
-export const deleteBlog = /* GraphQL */ `
-  mutation DeleteBlog(
-    $input: DeleteBlogInput!
-    $condition: ModelBlogConditionInput
+export const deleteUser = /* GraphQL */ `
+  mutation DeleteUser(
+    $input: DeleteUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    deleteBlog(input: $input, condition: $condition) {
+    deleteUser(input: $input, condition: $condition) {
       id
       name
-      posts {
+      workdays {
         items {
           id
           title
-          blogID
+          userID
           createdAt
           updatedAt
         }
@@ -70,28 +70,28 @@ export const deleteBlog = /* GraphQL */ `
     }
   }
 `;
-export const createPost = /* GraphQL */ `
-  mutation CreatePost(
-    $input: CreatePostInput!
-    $condition: ModelPostConditionInput
+export const createWorkDay = /* GraphQL */ `
+  mutation CreateWorkDay(
+    $input: CreateWorkDayInput!
+    $condition: ModelWorkDayConditionInput
   ) {
-    createPost(input: $input, condition: $condition) {
+    createWorkDay(input: $input, condition: $condition) {
       id
       title
-      blogID
-      blog {
+      userID
+      user {
         id
         name
-        posts {
+        workdays {
           nextToken
         }
         createdAt
         updatedAt
       }
-      comments {
+      workouts {
         items {
           id
-          postID
+          workDayID
           content
           createdAt
           updatedAt
@@ -103,28 +103,28 @@ export const createPost = /* GraphQL */ `
     }
   }
 `;
-export const updatePost = /* GraphQL */ `
-  mutation UpdatePost(
-    $input: UpdatePostInput!
-    $condition: ModelPostConditionInput
+export const updateWorkDay = /* GraphQL */ `
+  mutation UpdateWorkDay(
+    $input: UpdateWorkDayInput!
+    $condition: ModelWorkDayConditionInput
   ) {
-    updatePost(input: $input, condition: $condition) {
+    updateWorkDay(input: $input, condition: $condition) {
       id
       title
-      blogID
-      blog {
+      userID
+      user {
         id
         name
-        posts {
+        workdays {
           nextToken
         }
         createdAt
         updatedAt
       }
-      comments {
+      workouts {
         items {
           id
-          postID
+          workDayID
           content
           createdAt
           updatedAt
@@ -136,28 +136,28 @@ export const updatePost = /* GraphQL */ `
     }
   }
 `;
-export const deletePost = /* GraphQL */ `
-  mutation DeletePost(
-    $input: DeletePostInput!
-    $condition: ModelPostConditionInput
+export const deleteWorkDay = /* GraphQL */ `
+  mutation DeleteWorkDay(
+    $input: DeleteWorkDayInput!
+    $condition: ModelWorkDayConditionInput
   ) {
-    deletePost(input: $input, condition: $condition) {
+    deleteWorkDay(input: $input, condition: $condition) {
       id
       title
-      blogID
-      blog {
+      userID
+      user {
         id
         name
-        posts {
+        workdays {
           nextToken
         }
         createdAt
         updatedAt
       }
-      comments {
+      workouts {
         items {
           id
-          postID
+          workDayID
           content
           createdAt
           updatedAt
@@ -169,25 +169,25 @@ export const deletePost = /* GraphQL */ `
     }
   }
 `;
-export const createComment = /* GraphQL */ `
-  mutation CreateComment(
-    $input: CreateCommentInput!
-    $condition: ModelCommentConditionInput
+export const createWorkout = /* GraphQL */ `
+  mutation CreateWorkout(
+    $input: CreateWorkoutInput!
+    $condition: ModelWorkoutConditionInput
   ) {
-    createComment(input: $input, condition: $condition) {
+    createWorkout(input: $input, condition: $condition) {
       id
-      postID
-      post {
+      workDayID
+      WorkDay {
         id
         title
-        blogID
-        blog {
+        userID
+        user {
           id
           name
           createdAt
           updatedAt
         }
-        comments {
+        workouts {
           nextToken
         }
         createdAt
@@ -199,25 +199,25 @@ export const createComment = /* GraphQL */ `
     }
   }
 `;
-export const updateComment = /* GraphQL */ `
-  mutation UpdateComment(
-    $input: UpdateCommentInput!
-    $condition: ModelCommentConditionInput
+export const updateWorkout = /* GraphQL */ `
+  mutation UpdateWorkout(
+    $input: UpdateWorkoutInput!
+    $condition: ModelWorkoutConditionInput
   ) {
-    updateComment(input: $input, condition: $condition) {
+    updateWorkout(input: $input, condition: $condition) {
       id
-      postID
-      post {
+      workDayID
+      WorkDay {
         id
         title
-        blogID
-        blog {
+        userID
+        user {
           id
           name
           createdAt
           updatedAt
         }
-        comments {
+        workouts {
           nextToken
         }
         createdAt
@@ -229,25 +229,25 @@ export const updateComment = /* GraphQL */ `
     }
   }
 `;
-export const deleteComment = /* GraphQL */ `
-  mutation DeleteComment(
-    $input: DeleteCommentInput!
-    $condition: ModelCommentConditionInput
+export const deleteWorkout = /* GraphQL */ `
+  mutation DeleteWorkout(
+    $input: DeleteWorkoutInput!
+    $condition: ModelWorkoutConditionInput
   ) {
-    deleteComment(input: $input, condition: $condition) {
+    deleteWorkout(input: $input, condition: $condition) {
       id
-      postID
-      post {
+      workDayID
+      WorkDay {
         id
         title
-        blogID
-        blog {
+        userID
+        user {
           id
           name
           createdAt
           updatedAt
         }
-        comments {
+        workouts {
           nextToken
         }
         createdAt
