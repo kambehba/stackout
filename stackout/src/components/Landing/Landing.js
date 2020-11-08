@@ -17,9 +17,6 @@ function Landing(props) {
 
   return (
     <div className="landing-s0">
-      <div className="landing-s1">
-        <h1 className="landing-s2">Stackout</h1>
-      </div>
       <input
         className="landing-s3"
         type="text"

@@ -1,0 +1,19 @@
+.title-s0 {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.title-s1 {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  background-color: rgb(18, 19, 18);
+  width: 100vw;
+}
+
+.title-s2 {
+  color: aliceblue;
+}

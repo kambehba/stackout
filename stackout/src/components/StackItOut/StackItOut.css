@@ -1,0 +1,53 @@
+.stackItOut-s0 {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.stackItOut-s1 {
+  margin: 1rem;
+  height: 3rem;
+  width: 15rem;
+  color: blue;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.stackItOut-s2 {
+  margin: 0rem;
+  width: 200px;
+}
+
+.stackItOut-s3 {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+}
+
+.stackItOut-s4 {
+  border: chartreuse;
+  background: rgb(139, 34, 195);
+  background: radial-gradient(
+    circle,
+    rgba(139, 34, 195, 1) 13%,
+    rgba(241, 40, 108, 1) 98%
+  );
+  width: 165px;
+  height: 370px;
+  margin: 0.3rem;
+}
+
+.stackItOut-s5 {
+  border: chartreuse;
+  background: rgb(34, 193, 195);
+  background: radial-gradient(
+    circle,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(112, 253, 45, 1) 100%
+  );
+  width: 165px;
+  height: 370px;
+}
