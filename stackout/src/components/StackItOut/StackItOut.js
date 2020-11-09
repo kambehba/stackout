@@ -35,7 +35,7 @@ function StackItOut(props) {
   };
 
   const dothis = async () => {
-    //setworkOutItems(props.workOutItems);..d
+    //setworkOutItems(props.workOutItems);..dd
 
     console.log("workOutItems:" + props.workOutItems);
   };
