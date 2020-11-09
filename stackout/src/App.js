@@ -85,9 +85,7 @@ function App() {
     }
     doneWorkOutItems.push(w);
     setdoneWorkOutItems(doneWorkOutItems);
-    //console.log("h2:" + workOutItems);
     let h2 = workOutItems.filter((x) => x.id != w.id);
-    //console.log("h2:" + h2);
     setworkOutItems((prev) => (prev = h2));
   };
 
