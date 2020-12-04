@@ -15,6 +15,7 @@ export const createUser = /* GraphQL */ `
           title
           userID
           createdAt
+          workoutCounter
           updatedAt
         }
         nextToken
@@ -38,6 +39,7 @@ export const updateUser = /* GraphQL */ `
           title
           userID
           createdAt
+          workoutCounter
           updatedAt
         }
         nextToken
@@ -61,6 +63,7 @@ export const deleteUser = /* GraphQL */ `
           title
           userID
           createdAt
+          workoutCounter
           updatedAt
         }
         nextToken
@@ -94,11 +97,13 @@ export const createWorkDay = /* GraphQL */ `
           workDayID
           content
           createdAt
+          order
           updatedAt
         }
         nextToken
       }
       createdAt
+      workoutCounter
       updatedAt
     }
   }
@@ -127,11 +132,13 @@ export const updateWorkDay = /* GraphQL */ `
           workDayID
           content
           createdAt
+          order
           updatedAt
         }
         nextToken
       }
       createdAt
+      workoutCounter
       updatedAt
     }
   }
@@ -160,11 +167,13 @@ export const deleteWorkDay = /* GraphQL */ `
           workDayID
           content
           createdAt
+          order
           updatedAt
         }
         nextToken
       }
       createdAt
+      workoutCounter
       updatedAt
     }
   }
@@ -191,10 +200,12 @@ export const createWorkout = /* GraphQL */ `
           nextToken
         }
         createdAt
+        workoutCounter
         updatedAt
       }
       content
       createdAt
+      order
       updatedAt
     }
   }
@@ -221,10 +232,12 @@ export const updateWorkout = /* GraphQL */ `
           nextToken
         }
         createdAt
+        workoutCounter
         updatedAt
       }
       content
       createdAt
+      order
       updatedAt
     }
   }
@@ -251,10 +264,12 @@ export const deleteWorkout = /* GraphQL */ `
           nextToken
         }
         createdAt
+        workoutCounter
         updatedAt
       }
       content
       createdAt
+      order
       updatedAt
     }
   }

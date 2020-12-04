@@ -12,6 +12,7 @@ export const getUser = /* GraphQL */ `
           title
           userID
           createdAt
+          workoutCounter
           updatedAt
         }
         nextToken
@@ -62,11 +63,13 @@ export const getWorkDay = /* GraphQL */ `
           workDayID
           content
           createdAt
+          order
           updatedAt
         }
         nextToken
       }
       createdAt
+      workoutCounter
       updatedAt
     }
   }
@@ -92,6 +95,7 @@ export const listWorkDays = /* GraphQL */ `
           nextToken
         }
         createdAt
+        workoutCounter
         updatedAt
       }
       nextToken
@@ -117,10 +121,12 @@ export const getWorkout = /* GraphQL */ `
           nextToken
         }
         createdAt
+        workoutCounter
         updatedAt
       }
       content
       createdAt
+      order
       updatedAt
     }
   }
@@ -140,10 +146,12 @@ export const listWorkouts = /* GraphQL */ `
           title
           userID
           createdAt
+          workoutCounter
           updatedAt
         }
         content
         createdAt
+        order
         updatedAt
       }
       nextToken

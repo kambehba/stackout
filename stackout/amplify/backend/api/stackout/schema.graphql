@@ -10,14 +10,33 @@ type WorkDay @model @key(name: "byUser", fields: ["userID"]) {
   userID: ID!
   user: User @connection(fields: ["userID"])
   workouts: [Workout] @connection(keyName: "byWorkday", fields: ["id"])
+  createdAt: String
+  workoutCounter: Float!
 }
 
-type Workout @model @key(name: "byWorkday", fields: ["workDayID", "content"]) {
+type Workout @model @key(name: "byWorkday", fields: ["workDayID"]) {
   id: ID!
   workDayID: ID!
   WorkDay: WorkDay @connection(fields: ["workDayID"])
   content: String!
+  createdAt: String
+  order: Float!
 }
+
+# type WorkDay @model @key(name: "byUser", fields: ["userID"]) {
+#   id: ID!
+#   title: String!
+#   userID: ID!
+#   user: User @connection(fields: ["userID"])
+#   workouts: [Workout] @connection(keyName: "byWorkday", fields: ["id"])
+# }
+
+# type Workout @model @key(name: "byWorkday", fields: ["workDayID"]) {
+#   id: ID!
+#   workDayID: ID!
+#   WorkDay: WorkDay @connection(fields: ["workDayID"])
+#   content: String!
+# }
 
 # type Blog @model {
 #   id: ID!

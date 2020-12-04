@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../StackItOut/StackItOut.css";
 import { API, graphqlOperation } from "aws-amplify";
-import { createWorkout } from "../../../src/graphql/mutations";
-import { listWorkouts } from "../../../src/graphql/queries";
+import { createWorkout, updateWorkDay } from "../../../src/graphql/mutations";
+import { listWorkouts, getWorkDay } from "../../../src/graphql/queries";
 import Workouts from "../Workouts/Workouts";
 
 function StackItOut(props) {
@@ -41,19 +41,40 @@ function StackItOut(props) {
   };
 
   const OnAddWorkOut = async () => {
+    //Get Workday Counter Value
+    const getWorkDayresult = await API.graphql(
+      graphqlOperation(getWorkDay, { id: props.workOutDayId })
+    );
+    let workDayCounterValue = getWorkDayresult.data.getWorkDay.workoutCounter;
+    workDayCounterValue = workDayCounterValue + 1;
+
     const result = await API.graphql(
       graphqlOperation(createWorkout, {
         input: {
           workDayID: props.workOutDayId,
           content: workoutItem,
+          order: workDayCounterValue,
         },
       })
     );
 
-    let temp = [];
-    temp.push(workoutItem);
-    setworkOutItems([...workOutItems, ...temp]);
-    setworkoutItem((prev) => (prev = ""));
+    //update the counter Value in WorkDay Table
+    const result2 = await API.graphql(
+      graphqlOperation(updateWorkDay, {
+        input: {
+          id: props.workOutDayId,
+          workoutCounter: workDayCounterValue,
+        },
+      })
+    );
+
+    // let temp = [];
+    // temp.push(workoutItem);
+    // setworkOutItems([...workOutItems, ...temp]);
+    // setworkoutItem((prev) => (prev = ""));
+
+    props.loadWorkOuts(props.workOutDayId);
+    setworkoutItem("");
   };
 
   const onWorkoutDone = (w, isdone) => {
@@ -64,9 +85,7 @@ function StackItOut(props) {
     }
     doneWorkOutItems.push(w);
     setdoneWorkOutItems(doneWorkOutItems);
-    console.log("h2:" + workOutItems);
     let h2 = workOutItems.filter((x) => x.id != w.id);
-    console.log("h2:" + h2);
     setworkOutItems((prev) => (prev = h2));
   };
 
@@ -92,13 +111,6 @@ function StackItOut(props) {
             isdone={false}
             onWorkoutDone={onWorkoutDone2}
             workOutItems={props.workOutItems}
-          ></Workouts>
-        </div>
-        <div className="stackItOut-s5">
-          <Workouts
-            isdone={true}
-            onWorkoutDone={onWorkoutDone}
-            workOutItems={props.doneWorkOutItems}
           ></Workouts>
         </div>
       </div>

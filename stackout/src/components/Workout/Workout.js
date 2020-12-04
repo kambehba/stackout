@@ -3,7 +3,7 @@ import "../Workout/Workout.css";
 
 function Workout(props) {
   return (
-    <div>
+    <div className="workout-s0">
       <button
         onClick={props.onWorkoutDone}
         className="workout-s1 btn btn-warning"

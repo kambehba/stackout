@@ -46,17 +46,16 @@ function App() {
     );
     let temp = [];
     userWorkDays.map((x) => {
-      //temp.push(x.title);
       temp.push({ id: x.id, title: x.title });
     });
-    console.log(temp);
     //setworkOutDayItems([...workOutDayItems, ...temparray]);
     //setworkOutDayItems(temp);
     setworkOutDayItems(temp);
   };
 
   const onWorkoutDayClicked = (workDayId) => {
-    console.log("workDayId:" + workDayId);
+    console.log("workDayId22:" + workDayId);
+    setworkOutDayId((prev) => (prev = workDayId));
     loadWorkouts(workDayId);
     setshowStackItOut(true);
     setshowWorkOutDay(false);
@@ -69,6 +68,7 @@ function App() {
         input: {
           title: workoutDayTitle,
           userID: user,
+          workoutCounter: 0,
         },
       })
     );
@@ -91,20 +91,20 @@ function App() {
 
   const loadWorkouts = async (workDayId) => {
     const result = await API.graphql(graphqlOperation(listWorkouts));
+
     if (result.data.listWorkouts.items.length <= 0) return;
-    const userWorkouts = result.data.listWorkouts.items.filter(
-      (x) => x.workDayID == workDayId
-    );
+    const userWorkouts = result.data.listWorkouts.items
+      .filter((x) => x.workDayID == workDayId)
+      .sort((a, b) => a.order - b.order);
+
     let temp = [];
+
     userWorkouts.map((x) => {
-      console.log("x:" + x.content);
       temp.push({ id: x.id, content: x.content });
     });
 
-    console.log("temp:" + temp[0]);
-
-    setworkOutItems([...workOutItems, ...temp]);
-    //setworkOutItems(temp);
+    //setworkOutItems([...workOutItems, ...temp]);
+    setworkOutItems(temp);
   };
 
   const onNewWorkOutDay = (t) => {
@@ -132,9 +132,11 @@ function App() {
   if (showStackItOut) {
     stackItOutSection = (
       <StackItOut
+        workOutDayId={workOutDayId}
         onWorkoutDone2={onWorkoutDone2}
         workOutItems={workOutItems}
         doneWorkOutItems={doneWorkOutItems}
+        loadWorkOuts={loadWorkouts}
       ></StackItOut>
     );
   }
