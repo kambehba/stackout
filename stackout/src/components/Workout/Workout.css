@@ -7,5 +7,13 @@
 
 .workout-s1 {
   margin: 1rem;
-  width: 120px;
+  width: 220px;
+  height: 40px;
+  background-color: rgb(42, 88, 238);
+  text-align: center;
+  vertical-align: middle;
+  color: rgb(247, 246, 248);
+  justify-content: center;
+  align-self: auto;
+  line-height: 2.5em;
 }

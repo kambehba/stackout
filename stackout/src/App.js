@@ -16,6 +16,7 @@ function App() {
   let landingSection = null;
   let workoutDaysSection = null;
   let stackItOutSection = null;
+  let currentWorkOutItems = [];
 
   const [workOutDayItems, setworkOutDayItems] = useState([]);
   const [workOutItems, setworkOutItems] = useState([]);
@@ -27,6 +28,7 @@ function App() {
   const [showLanding, setshowLanding] = useState(true);
   const [showStackItOut, setshowStackItOut] = useState(false);
   const [doneWorkOutItems, setdoneWorkOutItems] = useState([]);
+  const [activeWorkOut, setactiveWorkOut] = useState({});
 
   useEffect(() => {
     updateUser();
@@ -78,33 +80,40 @@ function App() {
     //setworkOutDayItems([...workOutDayItems, workoutDayTitle]);
   };
 
-  const onWorkoutDone2 = (w, isdone) => {
-    if (isdone) {
-      alert("It is Done");
-      return;
-    }
-    doneWorkOutItems.push(w);
-    setdoneWorkOutItems(doneWorkOutItems);
-    let h2 = workOutItems.filter((x) => x.id != w.id);
-    setworkOutItems((prev) => (prev = h2));
+  const onWorkoutDone2 = (w) => {
+    // doneWorkOutItems.push(w);
+    // setdoneWorkOutItems(doneWorkOutItems);
+    // let h2 = workOutItems.filter((x) => x.id != w.id);
+    // setworkOutItems((prev) => (prev = h2));
+    updateCurrentWorkout();
+    document.getElementById("a1").play();
+  };
+
+  const updateCurrentWorkout = () => {
+    setactiveWorkOut({
+      id: workOutItems[0].id,
+      content: workOutItems[0].content,
+    });
+
+    workOutItems.shift();
+    setworkOutItems(workOutItems);
   };
 
   const loadWorkouts = async (workDayId) => {
     const result = await API.graphql(graphqlOperation(listWorkouts));
 
     if (result.data.listWorkouts.items.length <= 0) return;
-    const userWorkouts = result.data.listWorkouts.items
+    currentWorkOutItems = result.data.listWorkouts.items
       .filter((x) => x.workDayID == workDayId)
       .sort((a, b) => a.order - b.order);
 
-    let temp = [];
-
-    userWorkouts.map((x) => {
-      temp.push({ id: x.id, content: x.content });
+    setactiveWorkOut({
+      id: currentWorkOutItems[0].id,
+      content: currentWorkOutItems[0].content,
     });
 
-    //setworkOutItems([...workOutItems, ...temp]);
-    setworkOutItems(temp);
+    currentWorkOutItems.shift();
+    setworkOutItems(currentWorkOutItems);
   };
 
   const onNewWorkOutDay = (t) => {
@@ -137,6 +146,7 @@ function App() {
         workOutItems={workOutItems}
         doneWorkOutItems={doneWorkOutItems}
         loadWorkOuts={loadWorkouts}
+        activeWorkout={activeWorkOut.content}
       ></StackItOut>
     );
   }
@@ -154,6 +164,9 @@ function App() {
 
   return (
     <div className="app-s1">
+      <audio id="a1">
+        <source src="audio/ding.mp3" type="audio/mpeg"></source>
+      </audio>
       {titleSection}
       {landingSection}
       {workoutDaysSection}

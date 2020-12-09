@@ -6,6 +6,7 @@ import { listWorkouts, getWorkDay } from "../../../src/graphql/queries";
 import Workouts from "../Workouts/Workouts";
 
 function StackItOut(props) {
+  const [activeWorkoutStyle, setactiveWorkoutStyle] = useState("stackItOut-s4");
   const [workoutItem, setworkoutItem] = useState("");
   const [selectedWorkOut, setselectedWorkOut] = useState("");
   const [workOutItems, setworkOutItems] = useState([]);
@@ -89,8 +90,12 @@ function StackItOut(props) {
     setworkOutItems((prev) => (prev = h2));
   };
 
-  const onWorkoutDone2 = (w, isdone) => {
-    props.onWorkoutDone2(w, isdone);
+  const onWorkoutDone2 = (w) => {
+    props.onWorkoutDone2(w);
+    setactiveWorkoutStyle("stackItOut-s7");
+    setTimeout(function () {
+      setactiveWorkoutStyle("stackItOut-s6");
+    }, 2000);
   };
 
   return (
@@ -106,12 +111,16 @@ function StackItOut(props) {
         Add
       </button>
       <div className="stackItOut-s3">
-        <div className="stackItOut-s4">
-          <Workouts
-            isdone={false}
-            onWorkoutDone={onWorkoutDone2}
-            workOutItems={props.workOutItems}
-          ></Workouts>
+        <div className={activeWorkoutStyle}>
+          <button
+            className="btn btn-danger stackItOut-s8"
+            onClick={onWorkoutDone2}
+          >
+            {props.activeWorkout}
+          </button>
+        </div>
+        <div className="stackItOut-s5">
+          <Workouts isdone={false} workOutItems={props.workOutItems}></Workouts>
         </div>
       </div>
     </div>
