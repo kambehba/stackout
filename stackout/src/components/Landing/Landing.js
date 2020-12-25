@@ -4,29 +4,29 @@ import "../Landing/Landing.css";
 function Landing(props) {
   const [workoutDayTitle, setworkoutDayTitle] = useState("");
 
-  const handleChange = (event) => {
-    setworkoutDayTitle(event.target.value);
+  // const handleChange = (event) => {
+  //   setworkoutDayTitle(event.target.value);
 
-    props.onNewWorkOutDay(workoutDayTitle);
-  };
+  //   props.onNewWorkOutDay(workoutDayTitle);
+  // };
 
-  const dothis = () => {
-    props.addWorkoutday();
-    setworkoutDayTitle((prev) => (prev = ""));
+  // const AddWorkDay = () => {
+  //   props.addWorkoutday();
+  //   setworkoutDayTitle((prev) => (prev = ""));
+  // };
+
+  const manage = () => {
+    props.onManage();
   };
 
   return (
     <div className="landing-s0">
-      <input
-        className="landing-s3"
-        type="text"
-        placeholder="Work out Day Title"
-        value={workoutDayTitle}
-        onChange={handleChange}
-      />
-      <button className="landing-s4 btn btn-success" onClick={dothis}>
-        Add Workout Day
-      </button>
+      {/* <img
+        className="landing-s5"
+        src="images/manage.png"
+        onClick={manage}
+      ></img> */}
+      <h2>Have a Good Workout!</h2>
     </div>
   );
 }

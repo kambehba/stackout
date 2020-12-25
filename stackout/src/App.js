@@ -8,17 +8,33 @@ import WorkoutDays from "../src/components/WorkoutDays/WorkoutDays.js";
 import StackItOut from "../src/components/StackItOut/StackItOut.js";
 import Title from "../src/components/Title/Title.js";
 import Landing from "../src/components/Landing/Landing";
+import Ending from "../src/components/Ending/Ending";
+import Workouts from "../src/components/Workouts/Workouts";
+import ManageWorkDay from "../src/components/Manage/WorkDay/ManageWorkDay";
 import { createWorkDay } from "../src/graphql/mutations";
 import { listWorkDays, listWorkouts } from "../src/graphql/queries";
+
+import Shoulder from "../src/components/Workout/Shoulder";
+import Legs from "../src/components/Workout/Legs";
+import Chest from "../src/components/Workout/Chest";
+import Arms from "../src/components/Workout/Arms";
 
 function App() {
   let titleSection = null;
   let landingSection = null;
   let workoutDaysSection = null;
   let stackItOutSection = null;
+  let endingSection = null;
+  let mangeworkdaySection = null;
+  let workOutSection = null;
   let currentWorkOutItems = [];
 
-  const [workOutDayItems, setworkOutDayItems] = useState([]);
+  const [workOutDayItems, setworkOutDayItems] = useState([
+    "Shoulder",
+    "Legs",
+    "Chest",
+    "Arms",
+  ]);
   const [workOutItems, setworkOutItems] = useState([]);
   const [workOutDayItem, setworkOutDayItem] = useState({});
   const [user, setUser] = useState("");
@@ -27,8 +43,17 @@ function App() {
   const [showWorkOutDay, setshowWorkOutDay] = useState(true);
   const [showLanding, setshowLanding] = useState(true);
   const [showStackItOut, setshowStackItOut] = useState(false);
+  const [showWorkOutSection, setshowWorkOutSection] = useState(false);
+  const [showEnding, setshowEnding] = useState(false);
+  const [showManageWorkDay, setshowManageWorkDay] = useState(false);
   const [doneWorkOutItems, setdoneWorkOutItems] = useState([]);
   const [activeWorkOut, setactiveWorkOut] = useState({});
+
+  const [showShoulder, setshowShoulder] = useState(false);
+  const [showLegs, setshowLegs] = useState(false);
+  const [showChest, setshowChest] = useState(false);
+  const [showArms, setshowArms] = useState(false);
+  const [currentWoroutIndex, setcurrentWoroutIndex] = useState(0);
 
   useEffect(() => {
     updateUser();
@@ -37,7 +62,11 @@ function App() {
   const updateUser = async () => {
     const userInfo = await Auth.currentUserInfo();
     setUser((prev) => (prev = userInfo.username));
-    getWorkoutDays(userInfo.username);
+    //getWorkoutDays(userInfo.username);
+  };
+
+  const dothis2 = () => {
+    setworkOutDayItems(["Shoulder", "Legs", "Chest", "Arms"]);
   };
 
   const getWorkoutDays = async (userinfo) => {
@@ -62,6 +91,7 @@ function App() {
     setshowStackItOut(true);
     setshowWorkOutDay(false);
     setshowLanding(false);
+    setshowEnding(false);
   };
 
   const addWorkoutday = async () => {
@@ -89,7 +119,29 @@ function App() {
     document.getElementById("a1").play();
   };
 
+  const onBackClicked = () => {
+    setshowWorkOutSection(false);
+    setshowStackItOut(false);
+    setshowWorkOutDay(true);
+    setshowLanding(true);
+    setshowEnding(false);
+  };
+
+  const updateWorkoutDays = (dd, myindex) => {
+    let aa = [...workOutDayItems];
+    aa[myindex].title = dd;
+    setworkOutDayItems(aa);
+  };
+
   const updateCurrentWorkout = () => {
+    if (workOutItems.length == 0) {
+      setshowStackItOut(false);
+      setshowWorkOutDay(false);
+      setshowLanding(false);
+      setshowEnding(true);
+      return;
+    }
+
     setactiveWorkOut({
       id: workOutItems[0].id,
       content: workOutItems[0].content,
@@ -120,6 +172,28 @@ function App() {
     setworkoutDayTitle((prevTitle) => (prevTitle = t));
   };
 
+  const showManageWorkDaySection = () => {
+    setshowStackItOut(false);
+    setshowWorkOutDay(false);
+    setshowLanding(false);
+    setshowEnding(false);
+    setshowManageWorkDay(true);
+  };
+
+  const LoadWorkouts2 = (index) => {
+    setcurrentWoroutIndex(index);
+
+    setshowWorkOutSection(true);
+    setshowStackItOut(false);
+    setshowWorkOutDay(false);
+    setshowLanding(false);
+    setshowEnding(false);
+  };
+
+  const onManage = () => {
+    showManageWorkDaySection();
+  };
+
   titleSection = (
     <div>
       <Title></Title>
@@ -127,15 +201,25 @@ function App() {
   );
 
   if (showWorkOutDay) {
-    workoutDaysSection = (
-      <div>
-        <WorkoutDays
-          name={user}
-          workOutDayItems={workOutDayItems}
-          workoutDayClicked={onWorkoutDayClicked}
-        />
-      </div>
-    );
+    workoutDaysSection = workOutDayItems.map((item, index) => {
+      return (
+        <button
+          className="btn btn-success app-s3"
+          onClick={() => LoadWorkouts2(index)}
+        >
+          {item}
+        </button>
+      );
+    });
+    // <div>
+    //   {/* <WorkoutDays
+    //     name={user}
+    //     workOutDayItems={workOutDayItems}
+    //     workoutDayClicked={onWorkoutDayClicked}
+    //     showManage={false}
+    //   /> */}
+
+    // </div>
   }
 
   if (showStackItOut) {
@@ -151,12 +235,74 @@ function App() {
     );
   }
 
+  if (showWorkOutSection) {
+    if (currentWoroutIndex == 0)
+      workOutSection = (
+        <div>
+          <Shoulder></Shoulder>
+          <button onClick={onBackClicked} className="btn btn-danger">
+            Back
+          </button>
+        </div>
+      );
+    if (currentWoroutIndex == 1)
+      workOutSection = (
+        <div>
+          <Legs></Legs>
+          <button onClick={onBackClicked} className="btn btn-danger">
+            Back
+          </button>
+        </div>
+      );
+    if (currentWoroutIndex == 2)
+      workOutSection = (
+        <div>
+          <Chest></Chest>
+          <button onClick={onBackClicked} className="btn btn-danger">
+            Back
+          </button>
+        </div>
+      );
+    if (currentWoroutIndex == 3)
+      workOutSection = (
+        <div>
+          <Arms></Arms>
+          <button onClick={onBackClicked} className="btn btn-danger">
+            Back
+          </button>
+        </div>
+      );
+  }
+
   if (showLanding) {
     landingSection = (
       <div>
-        <Landing
+        {/* <Landing
           addWorkoutday={addWorkoutday}
           onNewWorkOutDay={onNewWorkOutDay}
+          onManage={onManage}
+        /> */}
+        <Landing onManage={onManage} />
+      </div>
+    );
+  }
+
+  if (showEnding) {
+    endingSection = (
+      <div>
+        <Ending />
+      </div>
+    );
+  }
+  if (showManageWorkDay) {
+    mangeworkdaySection = (
+      <div>
+        <ManageWorkDay
+          onNewWorkOutDay={onNewWorkOutDay}
+          addWorkoutday={addWorkoutday}
+          workOutDayItems={workOutDayItems}
+          showManage={true}
+          updateWorkoutDays={updateWorkoutDays}
         />
       </div>
     );
@@ -170,7 +316,10 @@ function App() {
       {titleSection}
       {landingSection}
       {workoutDaysSection}
+      {workOutSection}
       {stackItOutSection}
+      {mangeworkdaySection}
+      {endingSection}
     </div>
   );
 }

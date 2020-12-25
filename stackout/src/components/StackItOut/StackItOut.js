@@ -91,11 +91,11 @@ function StackItOut(props) {
   };
 
   const onWorkoutDone2 = (w) => {
-    props.onWorkoutDone2(w);
-    setactiveWorkoutStyle("stackItOut-s7");
+    setactiveWorkoutStyle("stackItOut-s7 stackItOut-s4");
     setTimeout(function () {
-      setactiveWorkoutStyle("stackItOut-s6");
-    }, 2000);
+      setactiveWorkoutStyle("stackItOut-s6 stackItOut-s4");
+    }, 1000);
+    props.onWorkoutDone2(w);
   };
 
   return (

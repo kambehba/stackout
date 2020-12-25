@@ -30,6 +30,13 @@
 
 .landing-s4 {
   margin: 1rem;
+  border-radius: 25px;
+}
+
+.landing-s5 {
+  margin-top: 1rem;
+  margin-left: 20rem;
+  margin-right: 2rem;
 }
 
 .landing-s22 {

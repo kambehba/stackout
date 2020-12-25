@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body {
-  background-color: rgb(94, 94, 206);
+  background-color: rgb(255, 255, 255);
   padding: 0;
   margin: 0;
 }
@@ -21,4 +21,19 @@ body {
 .app-s2 {
   font-style: italic;
   color: rgb(206, 37, 37);
+}
+
+.app-s3 {
+  margin: 2rem;
+  width: 200px;
+  height: 40px;
+}
+
+.app-s4 {
+  margin-right: 14rem;
+  margin: 2rem;
+}
+
+.app-s5 {
+  text-align: center;
 }
